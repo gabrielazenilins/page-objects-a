@@ -2,14 +2,12 @@ class SecurePage {
   constructor(page) {
     this.page = page;
 
-    // HTML real da página /secure:
-    // <h2><i class="fa fa-lock"></i> Secure Area</h2>
-    // <div id="flash" class="success">You logged into a secure area!...</div>
-    // <a class="button secondary radius" href="/logout"><i class="fa fa-2x fa-sign-out"></i> Logout</a>
+    // Caso eu queira usar CSS
     //this.pageHeader = page.locator('h2');
     //this.flashMessage = page.locator('#flash');
     //this.logoutButton = page.locator('a.button.secondary.radius');
-
+    
+  // Usando XPath
     this.pageHeader = page.locator("xpath=//h2");
     this.flashMessage = page.locator("xpath=//div[@id='flash']");
     this.logoutButton = page.locator("xpath=//a[contains(@class, 'button') and contains(@class, 'secondary') and contains(@class, 'radius')]");
