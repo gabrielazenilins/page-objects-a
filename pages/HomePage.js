@@ -2,10 +2,9 @@ class HomePage {
 
     constructor(page){
         this.page = page
-        this.title = 'h1'
         this.departureCity = 'select[name="fromPort"]'
         this.destinationCity = 'select[name="toPort"]'
-        this.findFlightsButton = 'input[type="submit"]'
+        this.findFlightsButton = 'input[value="Find Flights"]'
     }
 
     // Ações — sem verificação

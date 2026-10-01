@@ -1,6 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber')
 const { expect } = require('@playwright/test')
 const HomePage = require('../pages/HomePage')
+const ReservePage = require('../pages/ReservePage')
 
 Given('I am on the home page', async function () {
     this.homePage = new HomePage(this.page)
@@ -18,6 +19,7 @@ When('I click the Find Flights button', async function () {
 });
 
 Then('I should see the flights from {string} to {string}', async function (departure, destination) {
+    this.reservePage = new ReservePage(this.page)
     await expect(this.page).toHaveURL(/reserve\.php/)
-    await expect(this.page.locator('h3')).toHaveText(`Flights from ${departure} to ${destination}:`)
+    await expect(this.page.locator(this.reservePage.flightsTitle)).toHaveText(`Flights from ${departure} to ${destination}:`)
 })
