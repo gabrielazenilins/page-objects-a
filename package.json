@@ -1,0 +1,20 @@
+{
+  "name": "pom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:bdd:headed": "cross-env HEADLESS=true npm run test:bdd",
+    "test:bdd": "cucumber-js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.2.1",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.0",
+    "cross-env": "^10.1.0"
+  }
+}
