@@ -23,10 +23,28 @@ Before(async function () {
 })
 
 // Roda depois de CADA cenário, mesmo se ele falhar
+// Fecha algo sem deixar o cenário travar se o fechamento demorar
+async function closeSafely(nome, fechar) {
+    let timer
+    try {
+        await Promise.race([
+            fechar(),
+            new Promise((_, reject) => {
+                timer = setTimeout(() => reject(new Error(`demorou mais de 10s para fechar: ${nome}`)), 10 * 1000)
+            })
+        ])
+    } catch (erro) {
+        console.warn(`Aviso: ${erro.message}`)
+    } finally {
+        clearTimeout(timer)
+    }
+}
+
+// Roda depois de CADA cenário, mesmo se ele falhar
 After(async function () {
-    await this.page?.close()
-    await this.context?.close()
-    await this.browser?.close()
+    await closeSafely('page', () => this.page?.close())
+    await closeSafely('context', () => this.context?.close())
+    await closeSafely('browser', () => this.browser?.close())
 })
 
 module.exports = { CustomWorld }

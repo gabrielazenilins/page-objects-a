@@ -4,6 +4,7 @@ module.exports = {
         require: ['steps/**/*.js', 'support/**/*.js'],
         requireModule: [],
         format: ['progress'],
-        publishQuiet: true
+        publishQuiet: true,
+        forceExit: true
     }
 }
